@@ -1,8 +1,10 @@
 <div class="well col-sm-4 col-sm-offset-4" style="text-align: center;">
-<h4>{{model.title}}</h4>  
-  <p>{{model.url}}</p> 
-  <p>topic: {{model.topic}}</p> 
-  <p id="description">description: {{model.description}}</p>
+
+  {{show-resource title=model.title url=model.url topic=model.topic description=model.description}}
+
   <p><button {{action "delete"}}>Delete</button></p>
+
 </div>
+
+
 

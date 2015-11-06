@@ -1,0 +1,14 @@
+{{#if isEditing}}
+{{input value=title}}
+  <p>{{input value=url}}</p> 
+  <p>{{input value=topic}}</p> 
+  <p>{{textarea value=description}}</p> 
+  <button {{action 'submit'}} id="save">Save</button>
+
+{{else}}
+<h4>{{title}}</h4>  
+  <p>{{url}}</p> 
+  <p>topic: {{topic}}</p> 
+  <p>description: {{description}}</p>
+
+{{/if}}
