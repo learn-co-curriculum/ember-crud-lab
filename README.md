@@ -2,11 +2,11 @@
 
 ## Objectives
 
-* Build an Ember model with several attributes. 
-* Build routes that render templates. Build nested routes that render nested templates. 
-* Build route handlers. 
-* Use Handlebars to iterate over and display of list of Ember data objects. 
-* Use handlebars to display a single Ember data object.
+* Build a route and route handler to create a new object. 
+* build a template that contains a form for a new object.
+* build a route handler action for deleting an object. use handlebars {{action="delete"}} to make delete button. 
+* build a component to toggle editing state and handle edits.  
+
 
 ## Testing
 
