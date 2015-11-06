@@ -15,6 +15,9 @@ export default function() {
   */
   this.get('/resources');
   this.get('/resources/:id');
+  this.get('/resources/new');
+  this.post('/resources');
+  this.del('/resources/:id');
   /*
     GET shorthands
     // Collections

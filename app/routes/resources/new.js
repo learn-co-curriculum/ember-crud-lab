@@ -1,18 +1,16 @@
-import Ember from 'ember';
+  import Ember from 'ember';
 
 export default Ember.Route.extend({
-  model(params) {
-    return this.store.findRecord('resource', params.resource_id);
+  model: function() {
+    return this.store.createRecord('resource');
   },
   actions: {
-    delete() {
+    save: function() {
       var resource = this.currentModel;
-      resource.deleteRecord();
       resource.save().then(() => {
         this.transitionTo('resources');
       });
-    },    
+    }
   }
 });
-
 
