@@ -3,7 +3,7 @@
   <p>{{input value=url}}</p> 
   <p>{{input value=topic}}</p> 
   <p>{{textarea value=description}}</p> 
-  <button {{action 'submit'}} id="save">Save</button>
+  <button {{action 'update'}} id="save">Save</button>
 
 {{else}}
 <h4>{{title}}</h4>  
@@ -12,3 +12,4 @@
   <p>description: {{description}}</p>
 
 {{/if}}
+

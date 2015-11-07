@@ -5,13 +5,11 @@ export default Ember.Component.extend({
     this.toggleProperty('isEditing');
   },
   actions: {
-    submit() {
-      var resource = this
-      debugger;
-      resource.set('title', "EMBER EMBER");
-      // resource.save();
+    update() {
       this.toggleProperty('isEditing');
-    }
+      this.attrs.update();
+      // this.sendAction('update');
+    } 
   },
   isEditing: false
 });

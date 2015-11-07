@@ -11,7 +11,7 @@ export default Ember.Route.extend({
       resource.save().then(() => {
         this.transitionTo('resources');
       });
-    },    
+    },
   }
 });
 
