@@ -32,4 +32,20 @@ describe('Integration: User Interaction', function() {
     });
   });
 
+  it('deletes a resource', function() {
+    server.create('resource', {
+      title: "Hacking 101",
+      description: "Be the black hat you always wanted to be!"
+    });
+    server.createList('resource', 2);
+
+    visit('/resources/1');
+    andThen(function() {
+      click('#delete');
+      andThen(function() {
+        expect(find('ul li.resources').length).to.eq(2);
+      });
+    });
+  });
+
 });
