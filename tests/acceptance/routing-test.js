@@ -32,6 +32,8 @@ describe('Acceptance: Getting Around', function() {
     visit('/');
     andThen(function(){
       let link = find('a.resources');
+      // $('p.resources a');
+      // find('a.resources');
       expect(link.text()).to.eq('Resources');
       expect(link.attr('href')).to.eq('/resources');
     });
@@ -42,6 +44,8 @@ describe('Acceptance: Getting Around', function() {
     server.createList('resource', 2);
 
     visit('/');
+    // let link = $("p.resources a");
+    // click(link);
     click(".resources");
 
     andThen(function(){
@@ -58,6 +62,8 @@ describe('Acceptance: Getting Around', function() {
     });
 
     visit('/');
+    // let link = $("p.resources a");
+    // click(link);
     click('.resources');
     click('ul li:first a');
 

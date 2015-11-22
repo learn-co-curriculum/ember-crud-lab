@@ -8,7 +8,6 @@ export default Ember.Component.extend({
     update() {
       this.toggleProperty('isEditing');
       this.attrs.update();
-      // this.sendAction('update');
     } 
   },
   isEditing: false
