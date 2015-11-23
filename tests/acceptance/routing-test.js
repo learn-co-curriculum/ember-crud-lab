@@ -31,7 +31,7 @@ describe('Acceptance: Getting Around', function() {
   it('has a link to the resources page', function(){
     visit('/');
     andThen(function(){
-      let link = find('a.resources');
+      let link = $("li#resources a");
       // $('p.resources a');
       // find('a.resources');
       expect(link.text()).to.eq('Resources');
@@ -44,14 +44,12 @@ describe('Acceptance: Getting Around', function() {
     server.createList('resource', 2);
 
     visit('/');
-    // let link = $("p.resources a");
-    // click(link);
-    click(".resources");
+    click("#resources a");
 
     andThen(function(){
       expect(find('ul li.resources').length).to.eq(3);
-      expect(find('ul li:first a').attr('href')).to.eq("/resources/1");
-      expect(find('ul li:first a').text().trim()).to.eq("Hacking 101");
+      expect(find('ul.all-resources li:first a').attr('href')).to.eq("/resources/1");
+      expect(find('ul.all-resources li:first a').text().trim()).to.eq("Hacking 101");
     });
   });
 
@@ -64,8 +62,8 @@ describe('Acceptance: Getting Around', function() {
     visit('/');
     // let link = $("p.resources a");
     // click(link);
-    click('.resources');
-    click('ul li:first a');
+    click("#resources a");
+    click('ul.all-resources li:first a');
 
     andThen(function(){
       expect(find('h4').text()).to.eq("Hacking 101");
