@@ -29,7 +29,7 @@ In this app, you'll be building a library of educational resources. We'll be dea
 * Define a route handler in `app/routes/resources.js` that will find and return all of the resource records. 
 * Define a route hanlder in `app/routes/resources/resource.js` that finds and returns the record for a given resource, use the `resource_id` from params. 
 
-Let's more on to some templates for now. We'll come back to the route handlers for creating a new resource and deleting a resource in a bit. 
+Let's move on to some templates for now. We'll come back to the route handlers for creating a new resource and deleting a resource in a bit. 
 
 ### Part III: Templates
 
