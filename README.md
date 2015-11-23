@@ -14,6 +14,8 @@ In this app, you'll be building a library of educational resources. We'll be dea
 
 ## Instructions
 
+**Note:** In this lab, most of the templates have been provided for you. They contain some starter code that our test suite relies on. 
+
 ### Part I: Setting up the Adapter and the Model
 
 * Install Active Model Adapter addon: `ember install active-model-adapter` in your terminal. 

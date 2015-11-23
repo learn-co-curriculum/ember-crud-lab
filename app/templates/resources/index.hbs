@@ -1,12 +1,19 @@
 <div class="container col-md-6 col-md-offset-3">
   <ul class="list-group  all-resources">
-    {{#each model as |resource|}}
+  
+  iterate over the list of resources and fill up the list items below with the resource title, which should link to that resource's individual show page, the resource topic and the resource URL. 
+
      <li class="list-group-item active resources">
-      {{#link-to 'resources.resource' resource}}
-         <h5>{{resource.title}}</h5> 
-     {{/link-to}}</li>
-         <li class="list-group-item"><p>topic: {{resource.topic}}</p></li>
-         <li class="list-group-item"><p>url: {{resource.url}}</p></li>
-    {{/each}}
+         <h5>Put the resource title here!!!</h5> 
+     </li>
+     
+     <li class="list-group-item">
+      <p>topic: </p>
+     </li>
+
+     <li class="list-group-item">
+      <p>url: </p>
+     </li>
+
   </ul>
 </div>
