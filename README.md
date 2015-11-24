@@ -70,7 +70,7 @@ Now, we'll build a component which will be responsible for rendering an individu
 
 ## Part VII: Building Our Closure Action
 
-* Create a resources controller. In `app/controllers/resources.js` we will define an action called `update`, that will be responsible for persisting changes to the resource.
+* Create a resources controller. In `app/controllers/resources/resource.js` we will define an action called `update`, that will be responsible for persisting changes to the resource.
 * Once you define the `updat` action in controller, we can pass it down into our component. 
 * On the resource show page, `app/templates/resources/resource.hbs`, pass the `update` action into the component using the following synatx:
 
