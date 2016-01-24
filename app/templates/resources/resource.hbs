@@ -2,7 +2,9 @@
 
 {{show-resource update=(action "update") title=model.title url=model.url topic=model.topic description=model.description }}
 
-  <p><button {{action "delete"}} id="delete">Delete</button></p>
+
+  Give the button below an action of delete
+  <p><button id="delete" {{action 'delete'}}>Delete</button></p>
 
 </div>
 

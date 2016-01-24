@@ -3,16 +3,18 @@
 ## Objectives
 
 * Build a route and route handler to create a new object. 
-* build a template that contains a form for a new object.
-* Build a route handler action for deleting an object. Use Handlebars `{{action="delete"}}` to make delete button. 
+* Build a template that contains a form for a new object.
+* Build a route handler action for deleting an object. Use Handlebars `{{action="delete"}}` to make a delete button. 
 * Build a component to toggle editing state and handle edits.  
 
 
 ## Overview
 
-In this app, you'll be building a library of educational resources. We'll be dealing with one model, the Resources model. Each resource represents an educational resource (a book, blog post, website, you name it). We'll be using the Active Model Adapter to connect to to an external API of educational resources. For the purposes of development and testing, however, we have configured a Javascript library called Mirage to stub external web requests to the API and provide you with some dummy seed data to work with. 
+In this app, you'll be building a library of educational resources. We'll be dealing with one model, the Resources model. Each resource represents an educational resource (a book, blog post, website, you name it). We'll be using the Active Model Adapter to connect to an external API of educational resources. For the purposes of development and testing, however, we have configured a Javascript library called Mirage to stub external web requests to the API and provide you with some dummy seed data to work with. 
 
 ## Instructions
+
+**Note:** In this lab, most of the templates have been provided for you. They contain some starter code that our test suite relies on. 
 
 ### Part I: Setting up the Adapter and the Model
 
@@ -25,9 +27,9 @@ In this app, you'll be building a library of educational resources. We'll be dea
 
 * Define your router in `app/router.js` such that there is a route for `/resources`. This route should contain a nested route for `/new` and for an individual resource show page. 
 * Define a route handler in `app/routes/resources.js` that will find and return all of the resource records. 
-* Define a route hanlder in `app/routes/resources/resource.js` that finds and returns the record for a given resource, use the `resource_id` from params. 
+* Define a route handler in `app/routes/resources/resource.js` that finds and returns the record for a given resource. Use the `resource_id` from params. 
 
-Let's more on to some templates for now. We'll come back to the route handlers for creating a new resource and deleting a resource in a bit. 
+Let's move on to some templates for now. We'll come back to the route handlers for creating a new resource and deleting a resource in a bit. 
 
 ### Part III: Templates
 
@@ -41,36 +43,37 @@ We'll come back to the show page for a given resource. We'll be using a componen
 
 We already have a route defined for new resource page. Go ahead and open up `app/templates/resources/new.hbs`. This is where we will put our form for a new resource. 
 
-* Build a form for a new resource using Handlebars `{{input}}` helpers. There should be an input field for title, topic, URL and description. Each of the input helpers just have an `id` of `title`, `topic`, `url` and `description`, respecitively. 
+* Build a form for a new resource using Handlebars `{{input}}` helpers. There should be an input field for title, topic, URL and description. Each of the input helpers just have an `id` of `title`, `topic`, `url` and `description`, respectively. 
 * The save button should contain an action of `'save'`. Use the `{{action}}` input helper. 
 * Now let's build the route handler for creating a new resource. In `app/routes/resources/new.js`, build the route handler such that it sets `model` equal to a function that creates and returns a new resource. 
 * Now, let's build the `'save'` action into this route handler. Define an action, `save`, that saves the resource and transitions to the resources index page. 
 
 ### Part V: Deleting a Resource
 
-Now let's create the ability for a user to delete a resource. We'll put a delete button on the show page of an individual resources. 
+Now let's create the ability for a user to delete a resource. We'll put a delete button on the show page of an individual resource. 
 
 * In `app/templates/resources/resource.hbs`, create a button with an `id` of `"delete"`. Give that button an `{{action}}` of `'delete'`. Now let's build the delete action. 
 * In `app/routes/resources/resource.js` define an action, `delete`, that deletes the given record, saves the resource and transitions back to the resources index page. 
 
 ### Part VI: Building our Resource Component
 
-Now, we'll build a component which will be responsible for rendering an individual resource on its show page. Then, we'll talk about using components, controller actions and something special called ember closure actions, to toggle between and editing and not editing state and to give our user the ability to edit a given resource.
+Now, we'll build a component which will be responsible for rendering an individual resource on its show page. Then, we'll talk about using components, controller actions, and something special called ember closure actions, to toggle between editing and not editing state and to give our user the ability to edit a given resource.
 
 * Generate our `show-resource` component with the following command in your terminal: `ember generate component show-resource`. 
-* Open up `app/templates/components/show-component.hbs`. This is where we will display the given resource. Let's display the title of a resource in an `<h4>` and the url, topic and description each in their very on `<p>` tags. 
+* Open up `app/templates/components/show-component.hbs`. This is where we will display the given resource. Let's display the title of a resource in an `<h4>` and the url, topic and description each in their very own `<p>` tags. 
 * In `app/templates/resources/resource.hbs` we'll call on our component and pass in the title, url, topic and description. 
 * Now let's build out the ability of our component to toggle between editing states. When the user clicks on the `<h4>` resource title, we should show them the edit form for that resource. When they click the submit button on that form, the edits should be persisted and the edit form should be replaced with the view of that resource. 
 * In `app/components/show-resource.js`, define a property, `isEditing` and set it to `false`. 
 * Now we'll use this property to add some logic to our component template. In `app/templates/components/show-resource.js`: use a Handlebars `{{if}}` statement to say that: if the `{{isEditing}}` property is `true`, show a form for editing the resource. Use `{{}}` input helpers to build your form. `{{else}}`, show the completed resource. 
-* How will a user toggle between seeing the editing form and seeing the completed resource? We want them to be able to click on the `<h4>` title to switch to viewing the edit form. In `app/components/show-resource.js`, define an action, `edit`, and set it to a function that toggles the `isEditing` property. Great, now we can make our edit form appear when the user clicks the title of a resource. But how will we actually make and persist edits to the resource? We'll use Ember closure actions!
 
+* How will a user toggle between seeing the editing form and seeing the completed resource? We want them to be able to click on the `<h4>` title to switch to viewing the edit form. In `app/components/show-resource.js`, define an action, `edit`, and set it to a function that toggles the `isEditing` property. Great, now we can make our edit form appear when the user clicks the title of a resource. But how will we actually make and persist edits to the resource? We'll use Ember closure actions!
 
 ## Part VII: Building Our Closure Action
 
 * Create a resources controller. In `app/controllers/resources.js` we will define an action called `update`, that will be responsible for persisting changes to the resource.
 * Once you define the `update` action in controller, we can pass it down into our component. 
 * On the resource show page, `app/templates/resources/resource.hbs`, pass the `update` action into the component using the following synatx:
+
 
 ```
 {{show-resource update=(action "update") title=model.title url=model.url topic=model.topic description=model.description}}
@@ -105,3 +108,5 @@ That's it!
 
 
 
+
+<a href='https://learn.co/lessons/ember-crud-lab' data-visibility='hidden'>View this lesson on Learn.co</a>
