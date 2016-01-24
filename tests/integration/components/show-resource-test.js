@@ -27,20 +27,18 @@ describeComponent(
       expect(this.$()).to.have.length(1);
     });
 
-    it('toggles to the editing state on double click', function() {
-      this.on('dblclick', function() {
-        expect(this.get('isEditing').to.eq('true'));
-      });
+   it('shows the edit form when the isEditing property is set to true', function() {
+      this.render(hbs `{{show-resource title="Learn Ember RIGHT NOW" isEditing=true}}`);
+      expect($.trim(this.$('input#title').val())).to.eq('Learn Ember RIGHT NOW');
     });
 
-    it('persists edits to the record on submit of editing form', function() {
-      this.on('dblclick', function() {
-        fillIn('#title', 'Learn Ember Today!');
-        click('#submit');
-        andThen(function(){
-          expect(find('h4').text()).to.eq("Learn Ember Today!");
-        });
-      });
+    it('toggles the editing state when the user clicks on the h4 title on the component', function() {
+      this.set('title', "Learn Ember RIGHT NOW");
+      this.set('isEditing', false);
+      this.render(hbs `{{show-resource title=title isEditing=isEditing}}`);
+      this.$('h4').click();
+      expect(this.get('isEditing')).to.be.true;
     });
-  }
-);
+  });
+
+
