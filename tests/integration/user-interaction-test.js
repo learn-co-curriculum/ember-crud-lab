@@ -19,7 +19,7 @@ describe('Integration: User Interaction', function() {
     Ember.run(application, 'destroy');
   });
 
-  it('adds a new post', function(){
+  it('adds a new resource', function(){
     visit('/resources/new');
     fillIn('#title', 'Learn Ember Today!');
     fillIn('#url', 'www.emberlearning.com');
@@ -48,4 +48,20 @@ describe('Integration: User Interaction', function() {
     });
   });
 
+  it('edits a resource: toggles showing edit form and showing resource when user clicks resource title and submit button respectively', function() {
+    server.create('resource', {
+      title: "Learn Ember RIGHT NOW",
+      description: "Learn it right now, real quick."
+    });
+    visit('/resources/1');
+    click('h4');
+    andThen(function() {
+      expect(find('#h4').length).to.eq(0);
+      $("#title").val("Learn Ember A Little Bit Later");
+      click("#submit");
+      andThen(function() {
+        expect(find('#title').length).to.eq(0);
+      });
+    });
+  });
 });
