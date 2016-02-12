@@ -93,16 +93,16 @@ This way, we are giving our component a property, `resource`, that is set equal 
 
 * Here, we give our component an action, `saveChanges`, that, when triggered, will in turn trigger the `update` action on the controller.
 * Lastly, we need to tell our component how to call that `saveChanges` action and how to handle that action. 
-* In the `show-resource` component, add a submit button to the buttom of your editing form that contains the `{{action saveChanges}}` helper. This button should have an `id` of "submit" (for the purposes of our test suite). 
-* In `app/components/show-resource.js`, define an `saveChanges` action that triggers the closure action *and* toggles the `isEditing` state (once the user hits the save button, they should no longer see the editing form).
+* In the `show-resource` component, edit your form to have an on-submit action. When a user clicks the "submit" button, it should fire an action on our component. That action should in turn invoke the `saveChanges` action. Since we set `saveChanges` to a closure action, this will have the effect of triggering the `update` action of the controller. *Make sure your submit button has an `id` of `"submit"` so that the test suite can find the right button to click!* 
+* So, In `app/components/show-resource.js`, define an the action that will fire when a user clicks the submit button. This action should trigger the closure action *and* toggle the the `isEditing` state (once the user hits the save button, they should no longer see the editing form).
 
 ### Triggering the Closure Action
 
 Our component's `saveChanges` action needs to trigger the controller action: `update`. However, the `update` controller action needs to be given access to the object that we are trying to update. 
 
-Recall that we set a property on our component, `resource`, and set it equal to a model object. So, inside the `saveChanges` action, we have access to the `resource` property. When the `saveChanges` action triggers the `update` action, it needs to pass `resource` in as an argument to the `update` function. This way, the `update` action will have access to the object whose changes we want to save. 
+Recall that we set a property on our component, `resource`, and set it equal to a model object. So, inside the submit action that you defined, we have access to the `resource` property. When the `saveChanges` action triggers the `update` action, it needs to pass `resource` in as an argument to the `update` function. This way, the `update` action will have access to the object whose changes we want to save.
 
-So, revisit the `update` action you defined in your controller and refactor it so that it takes in an argument. Then, when you trigger the `update` action in the `saveChanges` action of the component, pass in `this.resource`. 
+So, revisit the `update` action you defined in your controller and refactor it so that it takes in an argument. Then, when you trigger the `update` action by invoking the `saveChanges` action of the component, pass in `this.get('resource')` as an argument. 
 
 That's it!
 
