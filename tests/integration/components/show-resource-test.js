@@ -39,9 +39,9 @@ describeComponent(
     });
 
     it('toggles the editing state when the user clicks on the h4 title on the component', function() {
-      this.set('title', "Learn Ember RIGHT NOW");
+      this.set('model', {title: "Learn Ember RIGHT NOW"});
       this.set('isEditing', false);
-      this.render(hbs `{{show-resource title=title isEditing=isEditing}}`);
+      this.render(hbs `{{show-resource resource=model isEditing=isEditing}}`);
       this.$('h4').click();
       expect(this.get('isEditing')).to.be.true;
     });
