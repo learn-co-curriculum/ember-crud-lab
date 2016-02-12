@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   actions: {
     update() {
-      this.attrs.update(this.get('resource'));
+      this.attrs.update();
       this.toggleProperty('isEditing');
 
     },

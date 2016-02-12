@@ -33,8 +33,8 @@ describeComponent(
     });
 
    it('shows the edit form when the isEditing property is set to true', function() {
-      this.set('model', {title: "Learn Ember RIGHT NOW"});
-      this.render(hbs `{{show-resource resource=model isEditing=true}}`);
+      // this.set('model', {title: "Learn Ember RIGHT NOW"});
+      this.render(hbs `{{show-resource title="Learn Ember RIGHT NOW" isEditing=true}}`);
       expect($.trim(this.$('input#title').val())).to.eq('Learn Ember RIGHT NOW');
     });
 
