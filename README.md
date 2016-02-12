@@ -61,12 +61,24 @@ Now, we'll build a component which will be responsible for rendering an individu
 
 * Generate our `show-resource` component with the following command in your terminal: `ember generate component show-resource`. 
 * Open up `app/templates/components/show-component.hbs`. This is where we will display the given resource. Let's display the title of a resource in an `<h4>` and the url, topic and description each in their very own `<p>` tags. 
-* In `app/templates/resources/resource.hbs` we'll call on our component and pass in the title, url, topic and description. 
+* In `app/templates/resources/resource.hbs` we'll call on our component and pass in model object that we want to render. 
 * Now let's build out the ability of our component to toggle between editing states. When the user clicks on the `<h4>` resource title, we should show them the edit form for that resource. When they click the submit button on that form, the edits should be persisted and the edit form should be replaced with the view of that resource. 
 * In `app/components/show-resource.js`, define a property, `isEditing` and set it to `false`. 
 * Now we'll use this property to add some logic to our component template. In `app/templates/components/show-resource.js`: use a Handlebars `{{if}}` statement to say that: if the `{{isEditing}}` property is `true`, show a form for editing the resource. Use `{{}}` input helpers to build your form. `{{else}}`, show the completed resource. 
 
 * How will a user toggle between seeing the editing form and seeing the completed resource? We want them to be able to click on the `<h4>` title to switch to viewing the edit form. In `app/components/show-resource.js`, define an action, `edit`, and set it to a function that toggles the `isEditing` property. Great, now we can make our edit form appear when the user clicks the title of a resource. But how will we actually make and persist edits to the resource? We'll use Ember closure actions!
+
+#### Passing Data into the Component
+
+Remember that components are stupid. They don't know about the environment in which they are rendered. So, we need to pass the model object that we want to render down into our component:
+
+```javascript
+{{show-resource resource=model}}
+```
+
+Then, in the component, we can render the title, url, description and topic my calling those methods on `{{model}}`.
+
+This way, we are giving our component a property, `resource`, that is set equal to a model object. 
 
 ## Part VII: Building Our Closure Action
 
@@ -76,37 +88,23 @@ Now, we'll build a component which will be responsible for rendering an individu
 
 
 ```
-{{show-resource update=(action "update") title=model.title url=model.url topic=model.topic description=model.description}}
+{{show-resource saveChanges=(action "update") resource=model}}
 ```
 
-* Lastly, we need to tell our component how to call that `upate` action and how to handle that action. 
-* In the `show-resource` component, add a submit button to the buttom of your editing form that contains the `{{action update}}` helper. This button should have an `id` of "submit" (for the purposes of our test suite). 
-* In `app/components/show-resource.js`, define an `update` action that triggers the closure action, using `this.attrs.update()` *and* toggles the `isEditing` state (once the user hits the save button, they should no longer see the editing form).
+* Here, we give our component an action, `saveChanges`, that, when triggered, will in turn trigger the `update` action on the controller.
+* Lastly, we need to tell our component how to call that `saveChanges` action and how to handle that action. 
+* In the `show-resource` component, edit your form to have an on-submit action. When a user clicks the "submit" button, it should fire an action on our component. That action should in turn invoke the `saveChanges` action. Since we set `saveChanges` to a closure action, this will have the effect of triggering the `update` action of the controller. *Make sure your submit button has an `id` of `"submit"` so that the test suite can find the right button to click!* 
+* So, In `app/components/show-resource.js`, define an the action that will fire when a user clicks the submit button. This action should trigger the closure action *and* toggle the the `isEditing` state (once the user hits the save button, they should no longer see the editing form).
+
+### Triggering the Closure Action
+
+Our component's `saveChanges` action needs to trigger the controller action: `update`. However, the `update` controller action needs to be given access to the object that we are trying to update. 
+
+Recall that we set a property on our component, `resource`, and set it equal to a model object. So, inside the submit action that you defined, we have access to the `resource` property. When the `saveChanges` action triggers the `update` action, it needs to pass `resource` in as an argument to the `update` function. This way, the `update` action will have access to the object whose changes we want to save.
+
+So, revisit the `update` action you defined in your controller and refactor it so that it takes in an argument. Then, when you trigger the `update` action by invoking the `saveChanges` action of the component, pass in `this.get('resource')` as an argument. 
 
 That's it!
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a href='https://learn.co/lessons/ember-crud-lab' data-visibility='hidden'>View this lesson on Learn.co</a>
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/ember-crud-lab' title='Resource Library'>Resource Library</a> on Learn.co and start learning to code for free.</p>

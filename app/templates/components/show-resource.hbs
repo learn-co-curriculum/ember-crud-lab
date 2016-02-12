@@ -1,18 +1,17 @@
 {{#if isEditing}}
-
-<p>title: {{input value=title id='title'}}</p>
-<p>topic:{{input value=topic}}</p>
-<p>url:{{input value=url}}</p>
-<p>description:{{input value=description}}</p>
-<button {{action 'update'}} id="submit">Submit</button>
-
+<form {{action "submit" on="submit"}}>
+<p>title: {{input value=resource.title id='title'}}</p>
+<p>topic:{{input value=resource.topic}}</p>
+<p>url:{{input value=resource.url}}</p>
+<p>description:{{input value=resource.description}}</p>
+{{input type="submit" value="Save Changes" id="submit" class="btn"}}
+</form>
 {{else}}
 
-  <h4 {{action 'edit'}}>{{title}}</h4>
-  <p>{{topic}}</p>
-  <p>{{url}}</p>
-  <p id="description">description: {{description}}</p>
+  <h4 {{action 'edit'}}>{{resource.title}}</h4>
+  <p>{{resource.topic}}</p>
+  <p>{{resource.url}}</p>
+  <p id="description">description: {{resource.description}}</p>
 
 {{/if}}
-
 
