@@ -1,3 +1,8 @@
+// can set update closure action, render component with stubbed action, 
+//  can fill out input field, can "submit" form and hit stubbed action
+//  BUT this stub is not correct/complete and will not then trigger the
+//  controller action.
+
 /* jshint expr:true */
 import { expect } from 'chai';
 import {
@@ -28,7 +33,8 @@ describeComponent(
     });
 
    it('shows the edit form when the isEditing property is set to true', function() {
-      this.render(hbs `{{show-resource title="Learn Ember RIGHT NOW" isEditing=true}}`);
+      this.set('model', {title: "Learn Ember RIGHT NOW"});
+      this.render(hbs `{{show-resource resource=model isEditing=true}}`);
       expect($.trim(this.$('input#title').val())).to.eq('Learn Ember RIGHT NOW');
     });
 
@@ -39,6 +45,7 @@ describeComponent(
       this.$('h4').click();
       expect(this.get('isEditing')).to.be.true;
     });
+
   });
 
 

@@ -1,3 +1,6 @@
+// with integration test, can visit, click, fill out, submit, trigger closure action 
+//  BUT data from filled out form not reflected in this.attrs in closure action
+
 import {
   describe,
   it,
@@ -48,7 +51,7 @@ describe('Integration: User Interaction', function() {
     });
   });
 
-  it('edits a resource: toggles showing edit form and showing resource when user clicks resource title and submit button respectively', function() {
+  it('edits a resource: persists edits to resource made when user clicks title, fills out and submits edit form', function() {
     server.create('resource', {
       title: "Learn Ember RIGHT NOW",
       description: "Learn it right now, real quick."
@@ -57,10 +60,10 @@ describe('Integration: User Interaction', function() {
     click('h4');
     andThen(function() {
       expect(find('#h4').length).to.eq(0);
-      $("#title").val("Learn Ember A Little Bit Later");
+      fillIn("#title", "Learn Ember A Little Bit Later");
       click("#submit");
       andThen(function() {
-        expect(find('#title').length).to.eq(0);
+        expect(find('h4').text()).to.eq("Learn Ember A Little Bit Later");
       });
     });
   });

@@ -3,8 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
   actions: {
-    update: function() {
-      var resource = this.get('model');
+    update: function(resource) {
       resource.save();
     }
   }
