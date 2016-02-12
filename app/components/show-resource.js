@@ -2,8 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   actions: {
-    update() {
-      this.attrs.update(this.get('resource'));
+    submit() {
+      this.attrs.saveChanges(this.get('resource'));
       this.toggleProperty('isEditing');
 
     },

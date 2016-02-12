@@ -1,11 +1,11 @@
 {{#if isEditing}}
-
+<form {{action "submit" on="submit"}}>
 <p>title: {{input value=resource.title id='title'}}</p>
 <p>topic:{{input value=resource.topic}}</p>
 <p>url:{{input value=resource.url}}</p>
 <p>description:{{input value=resource.description}}</p>
-<button {{action 'update'}} id="submit">Submit</button>
-
+{{input type="submit" value="Save Changes" id="submit" class="btn"}}
+</form>
 {{else}}
 
   <h4 {{action 'edit'}}>{{resource.title}}</h4>
@@ -14,5 +14,4 @@
   <p id="description">description: {{resource.description}}</p>
 
 {{/if}}
-
 
