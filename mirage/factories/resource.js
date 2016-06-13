@@ -1,6 +1,6 @@
-import Mirage, {faker}  from 'ember-cli-mirage';
+import { Factory, faker } from 'ember-cli-mirage';
 
-export default Mirage.Factory.extend({
+export default Factory.extend({
   title: function(){
     return `Learn ${faker.hacker.ingverb()}`;
   },
@@ -10,3 +10,6 @@ export default Mirage.Factory.extend({
   url: faker.internet.domainName,
   topic: faker.hacker.noun
 });
+
+
+

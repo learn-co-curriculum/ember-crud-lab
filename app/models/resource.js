@@ -1,8 +1,9 @@
-import DS from 'ember-data';
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
 
-export default DS.Model.extend({
-  title: DS.attr(),
-  topic: DS.attr(),
-  url: DS.attr(),
-  description: DS.attr()
+export default Model.extend({
+  title: attr(),
+  topic: attr(),
+  url: attr(),
+  description: attr()
 });
