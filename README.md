@@ -19,9 +19,46 @@ In this app, you'll be building a library of educational resources. We'll be dea
 ### Part I: Setting up the Adapter and the Model
 
 * Install Active Model Adapter addon: `ember install active-model-adapter` in your terminal. 
-* Generate an adapter with `ember generate adapter application`. Then, code your Active Model Adapter to connect to the following host: `https://dry-shore-2260.herokuapp.com`, with a namespace of `v1`.
+* Generate an adapter with `ember generate adapter application`. Your adapter should be defined like this:
+
+```javascript
+import ActiveModelAdapter from 'active-model-adapter';
+
+export default ActiveModelAdapter.extend(){
+  // host and namespace defined here
+}
+```
+
+Then, code your Active Model Adapter to connect to the following host: `https://dry-shore-2260.herokuapp.com`, with a namespace of `v1`.
 * Now that your Ember app knows where to send requests for data (i.e. to the API above), let's set up our Resources model. 
 * In `app/models/resource.js`, define your model to have a title, topic, URL and description. All of these will be of data type `'string'`.
+
+**IMPORTANT UPDATE:**
+
+The manner in which we define Ember models in Ember 2.6.0 has changed slightly. Now, when you generate a model, it should look like this:
+
+```javascript
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+
+export default Model.extend({
+  
+});
+
+```
+
+And you should define your attributes like this:
+
+```javascript
+// app/models/user.js
+import Model from 'ember-data/model';
+
+export default Model.extend({
+  name: attr(),
+  email: attr(),
+  ...
+});
+```
 
 ### Part II: Building Routes and Route Handlers
 
@@ -105,5 +142,6 @@ Recall that we set a property on our component, `resource`, and set it equal to 
 So, revisit the `update` action you defined in your controller and refactor it so that it takes in an argument. Then, when you trigger the `update` action by invoking the `saveChanges` action of the component, pass in `this.get('resource')` as an argument. 
 
 That's it!
+
 
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/ember-crud-lab' title='Resource Library'>Resource Library</a> on Learn.co and start learning to code for free.</p>
