@@ -120,7 +120,7 @@ This way, we are giving our component a property, `resource`, that is set equal 
 ## Part VII: Building Our Closure Action
 
 * Create a resources controller. In `app/controllers/resources.js` we will define an action called `update`, that will be responsible for persisting changes to the resource.
-* Once you define the `update` action in controller, we can pass it down into our component. 
+* Once you define the `update` action in the controller, we can pass it down into our component. 
 * On the resource show page, `app/templates/resources/resource.hbs`, pass the `update` action into the component using the following synatx:
 
 
@@ -145,3 +145,5 @@ That's it!
 
 
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/ember-crud-lab' title='Resource Library'>Resource Library</a> on Learn.co and start learning to code for free.</p>
+
+<p class='util--hide'>View <a href='https://learn.co/lessons/ember-crud-lab'>CRUD and Components Lab</a> on Learn.co and start learning to code for free.</p>
