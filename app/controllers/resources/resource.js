@@ -3,7 +3,9 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
   actions: {
-    update: function(resource) {
+    update: function(properties) {
+      let resource = this.get('model');
+      resource.setProperties(properties)
       resource.save();
     }
   }
