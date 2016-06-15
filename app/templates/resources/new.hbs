@@ -1,17 +1,16 @@
 <form class="form-horizontal">
   <label for="title">Title</label>
-    Put an input helper for the title here! Make sure to give it an id of "title"
+   {{input value=model.title}}
   
   <label for="url" class="col-lg-2 control-label">URL</label>  
-  Put an input helper for the url here! Make sure to give it an id of "url"
-  
+ 
+  {{input value=model.url}}
   <label for="topic" class="col-lg-2 control-label">Topic</label>
-  Put an input helper for the topic here! Make sure to give it an id of "topic"
-  
+ 
+  {{input value=model.topic}}
   <label for="description" class="col-lg-2 control-label">Description</label>
-  Put an input helper for the description here! Make sure to give it an id of "description"
-      
   
-  Give the button below an action of 'save'!
-  <button id="submit" class="btn btn-primary">Save</button>
+  {{input value=model.description}}
+  
+  <button id="submit" class="btn btn-primary" {{action 'save'}}>Save</button>
 </form>
