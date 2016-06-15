@@ -7,7 +7,6 @@ export default Ember.Route.extend({
 
   actions: {
     delete(){
-      debugger;
       let resource = this.modelFor(this.routeName);
       resource.destroyRecord().then((response)=>{
         this.transitionTo('resources')

@@ -1,0 +1,23 @@
+{{#if isEditing}}
+  <form class="form-horizontal">
+    <label for="title">Title</label>
+     {{input value=resource.title}}
+    
+    <label for="url" class="col-lg-2 control-label">URL</label>  
+   
+    {{input value=resource.url}}
+    <label for="topic" class="col-lg-2 control-label">Topic</label>
+   
+    {{input value=resource.topic}}
+    <label for="description" class="col-lg-2 control-label">Description</label>
+    
+    {{input value=resource.description}}
+    
+    <button id="submit" class="btn btn-primary" {{action 'save'}}>Save</button>
+  </form>
+{{else}}
+   <h2 {{action 'toggleEdit'}}>{{resource.title}}</h2>
+   <p>{{resource.topic}}</p>
+   <p>{{resource.description}}</p>
+   <p>{{resource.url}}</p>
+{{/if}}
